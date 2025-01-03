@@ -3,10 +3,12 @@ import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { storage } from '../../utils/MMKVStore'
+import { useTranslation } from 'react-i18next'
 
 const Register = () => {
     const navigation = useNavigation()
     const [formData, setFormData] = useState({})
+    const { t } = useTranslation()
 
     const handleInputChange = (name, text) => {
         setFormData(prevState => ({
@@ -37,22 +39,22 @@ const Register = () => {
       <View className='p-6 gap-4 bg-[#141115] relative'>
         <TextInput onChangeText={text=>{
           handleInputChange("username",text)
-        }} placeholder='Username' placeholderTextColor="#767676" className='border h-[52] bg-[#353236] pl-3' style={{color:"white"}}>
+        }} placeholder={t("usernameInput")} placeholderTextColor="#767676" className='border h-[52] bg-[#353236] pl-3' style={{color:"white"}}>
         </TextInput>
 
 
         <TextInput onChangeText={text=>{
           handleInputChange("email",text)
-        }} placeholder='Email address' placeholderTextColor="#767676" className='border h-[52] bg-[#353236] pl-3' style={{color:"white"}}>
+        }} placeholder={t("emailInput")} placeholderTextColor="#767676" className='border h-[52] bg-[#353236] pl-3' style={{color:"white"}}>
         </TextInput>
 
         <TextInput onChangeText={text=>{
           handleInputChange("password",text)
-        }} placeholder='Password' placeholderTextColor="#767676" className='border h-[52] bg-[#353236] pl-3' style={{color:"white"}}>
+        }} placeholder={t("passwordInput")} placeholderTextColor="#767676" className='border h-[52] bg-[#353236] pl-3' style={{color:"white"}}>
         </TextInput>
         
-        <TouchableOpacity onPress={register} className='bg-[#E50A14] py-5 rounded-lg'><Text className='text-white text-center font-bold text-xl'>Sign Up</Text></TouchableOpacity>
-        <TouchableOpacity onPress={() => {navigation.navigate("Login")}}><Text className='text-gray-400 text-center mt-4'>Already have an account? Sign in</Text></TouchableOpacity>
+        <TouchableOpacity onPress={register} className='bg-[#E50A14] py-5 rounded-lg'><Text className='text-white text-center font-bold text-xl'>{t("signup")}</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => {navigation.navigate("Login")}}><Text className='text-gray-400 text-center mt-4'>{t("alreadyhas")}</Text></TouchableOpacity>
 
       </View>
 

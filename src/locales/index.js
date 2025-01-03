@@ -2,8 +2,6 @@ import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import en from "./en.json"
 import ru from "./ru.json"
-import az from "./az.json"
-import tr from "./tr.json"
 
 const resources={
     ru:{
@@ -11,12 +9,6 @@ const resources={
     },
     en:{
         translation:en,
-    },
-    az:{
-        translation:az,
-    },
-    tr:{
-        translation:tr,
     },
 }
 

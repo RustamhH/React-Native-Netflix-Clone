@@ -1,18 +1,24 @@
-import { Alert, Text, TouchableOpacity, View, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Text, TouchableOpacity, View, Image } from 'react-native';
 import { storage } from '../../utils/MMKVStore';
-import Exit from "../../../assets/icons/exit.svg"
 import { useState, useEffect } from 'react';
+import { useMMKVString } from 'react-native-mmkv';
+import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
     const [username, setUsername] = useState('');
     const [avatar, setAvatar] = useState('');
 
+    const [selectedLanguage, setSelectedLanguage] = useMMKVString("selectedLanguage");
+    const { t } = useTranslation();
 
     useEffect(() => {
         setUsername(storage.getString('username') || "");
         setAvatar(storage.getString('avatar') || '');
     }, []);
+
+    const handleLanguage = () => {
+        setSelectedLanguage((prevState) => (prevState === "en" ? "ru" : "en"));
+    };
 
     const handleLogout = () => {
         storage.clearAll();
@@ -29,7 +35,7 @@ const Profile = () => {
                             resizeMode='cover'
                         />
                     ) : (
-                        <Text className='text-white text-center mt-8'>No Avatar</Text>
+                        <Text className='text-white text-center mt-8'>{t("noavatar")}</Text>
                     )}
                 </View>
 
@@ -38,12 +44,13 @@ const Profile = () => {
                 </Text>
             </View>
 
-            <TouchableOpacity
-                onPress={handleLogout}
-                className='px-5 py-3 self-center w-[140px] mt-10 rounded-lg'
-            >
-            <Exit/>
+
+            <TouchableOpacity onPress={handleLanguage} className="absolute right-7 top-3">
+                <Text className="text-white">{t("language")}</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={handleLogout} className='bg-[#E50A14] mt-6 py-5 rounded-lg'><Text className='text-white text-center font-bold text-xl'>{t("logout")}</Text></TouchableOpacity>
+
         </View>
     );
 };

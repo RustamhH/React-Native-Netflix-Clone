@@ -7,6 +7,7 @@ enableScreens();
 import { useEffect } from 'react';
 import { useMMKVString } from 'react-native-mmkv';
 import { useTranslation } from 'react-i18next';
+import "../project/src/locales/index"
 
 const App = () => {
 
