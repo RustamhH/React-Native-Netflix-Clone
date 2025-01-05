@@ -2,7 +2,7 @@ import { TouchableOpacity } from "react-native"
 import FastImage from "react-native-fast-image"
 import { useNavigation } from "@react-navigation/native"
 
-const ContentCard = ({ item }) => {
+const ContentCard = ({ item,type }) => {
 
   const navigation=useNavigation()
   

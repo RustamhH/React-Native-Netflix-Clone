@@ -5,11 +5,13 @@ import { View } from "react-native"
 import FastImage from "react-native-fast-image"
 import { Text } from "react-native"
 import { useTranslation } from "react-i18next"
+import { useNavigation } from "@react-navigation/native"
 
 const Poster = () => {
   const screenWidth=Dimensions.get("screen").width
   const [visibleShow,setVisibleShow]=useState({})
   const { t }=useTranslation()
+  const navigation=useNavigation()
 
   const getShowData = async() =>{
     try {
@@ -37,7 +39,9 @@ const Poster = () => {
       </FastImage>
 
       <View className="w-full absolute bottom-0 left-[27px] flex-row justify-between items-center p-[14px]">
-        <TouchableOpacity className="bg-white w-[48%] py-[10px] rounded-[6px]">
+        <TouchableOpacity className="bg-white w-[48%] py-[10px] rounded-[6px]" onPress={()=>{
+      navigation.navigate("Home",{screen:"Details",params:{id:visibleShow.id,type:'tv'}})
+    }}>
           <Text className="text-[#191B1E] text-xl font-extrabold text-center">{t("play")}</Text>
         </TouchableOpacity>
         <TouchableOpacity className="bg-[#2E2B2F] w-[48%] py-[10px] rounded-[6px]">
