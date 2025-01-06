@@ -20,9 +20,23 @@ const Profile = () => {
         setSelectedLanguage((prevState) => (prevState === "en" ? "ru" : "en"));
     };
 
-    const handleLogout = () => {
-        storage.clearAll();
-    };
+
+    const handleLogout=async()=>{
+        try{
+            const response=await fetch(`http://192.168.100.8:5001/api/v1/auth/logout`,{
+                headers:{
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",                
+                }
+            });
+
+            storage.delete("accessToken")
+            storage.set("firstTimeUser",false)
+
+        }catch(error){
+            console.error(error);
+        }
+    }
 
     return (
         <View className='flex-1 bg-black p-4'>

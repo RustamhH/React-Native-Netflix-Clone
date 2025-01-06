@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { storage } from '../../utils/MMKVStore'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useTranslation } from 'react-i18next'
+import NetflixIcon from "../../../assets/icons/netflix.svg"
 
 const Login = () => {
   const navigation = useNavigation()
@@ -33,7 +34,6 @@ const Login = () => {
 
       if (response.ok) {
         storage.set("accessToken", data.token)
-        navigation.navigate("TabStack")
       } else {
         Alert.alert("Error", data.message)
       }
@@ -48,6 +48,7 @@ const Login = () => {
     
     
     <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" contentContainerClassName='flex-1 justify-center' className='bg-[#141115]'>
+      <View className='items-center'><NetflixIcon></NetflixIcon></View>
       <View className='p-6 gap-4 bg-[#141115] relative'>
         <TextInput onChangeText={text=>{
           handleInputChange("email",text)

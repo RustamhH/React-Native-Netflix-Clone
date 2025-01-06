@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { storage } from '../../utils/MMKVStore'
 import { useTranslation } from 'react-i18next'
+import NetflixIcon from "../../../assets/icons/netflix.svg"
+
 
 const Register = () => {
     const navigation = useNavigation()
@@ -33,9 +35,8 @@ const Register = () => {
     }
 
     return (
-        <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" contentContainerClassName='flex-1 justify-center' className='bg-[#141115]'>
-      
-      
+      <KeyboardAwareScrollView keyboardShouldPersistTaps="handled" contentContainerClassName='flex-1 justify-center' className='bg-[#141115]'>
+      <View className='items-center'><NetflixIcon></NetflixIcon></View>
       <View className='p-6 gap-4 bg-[#141115] relative'>
         <TextInput onChangeText={text=>{
           handleInputChange("username",text)

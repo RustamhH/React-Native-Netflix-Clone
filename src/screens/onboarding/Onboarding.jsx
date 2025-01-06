@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { FlatList,Dimensions, ImageBackground, TouchableOpacity } from "react-native";
+import { FlatList, ImageBackground, TouchableOpacity } from "react-native";
 import { Image } from "react-native";
 import { Text } from "react-native";
 import { View } from "react-native";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import NetflixIcon from "../../../assets/icons/netflix.svg"
+import { useMMKVString } from "react-native-mmkv";
+import { useTranslation } from "react-i18next";
 
 const Onboarding = () => {
 
@@ -20,22 +23,22 @@ const Onboarding = () => {
   const onboardingItems = [
     {
         image: require("../../../assets/images/onboarding1.png"),
-        title: "Watch on any device",
+        title:t("watchAnyDevice"),
         desc: t("streamAnywhere"),
     },
     {
         image: require("../../../assets/images/onboarding2.png"),
-        title: "3, 2, 1,... download!",
+        title: t("download"),
         desc: t("watchOffline"),
     },
     {
         image: require("../../../assets/images/onboarding3.png"),
-        title: "No pesky contracts.",
+        title: t("noContracts"),
         desc: t("cancelAnytime"),
     },
     {
         image: require("../../../assets/images/onboarding4.png"),
-        title: "How do I watch?",
+        title: t("howDoIWatch"),
         desc: t("membersSubscribe"),
     },
 
@@ -71,7 +74,7 @@ const Onboarding = () => {
   return (
     <ImageBackground className="flex-1 bg-black" {...(activeIndex===3?{source:onboardingItems[3].image}:{})}>
       <View className="w-full items-center relative mt-[40px] mb-[70px]">
-        {/* <NetflixIcon/> */}
+        <NetflixIcon/>
         <TouchableOpacity onPress={handleLanguage} className="absolute right-7 top-3">
           <Text className="text-white">{t("language")}</Text>
         </TouchableOpacity>
