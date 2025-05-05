@@ -13,7 +13,8 @@ const Navigation = () => {
 
 
         <NavigationContainer>
-            {accessToken?<TabStack></TabStack>:<AuthStack></AuthStack>}
+            {/* {accessToken?<TabStack></TabStack>:<AuthStack></AuthStack>} */}
+            <AuthStack></AuthStack>
         </NavigationContainer>
     )
 

@@ -1,14 +1,20 @@
 {
     "watchAnyDevice": "Watch on any device",
     "streamAnywhere": "Stream on your phone, tablet, laptop and TV without paying more",
-    "download": "3, 2, 1,... download!",
-    "watchOffline": "Always have something to watch offline",
-    "noContracts": "No pesky contracts",
-    "cancelAnytime": "Cancel anytime",
+    
+    "upload": "Upload your own movies",
+    "abilityposting": "Ability of posting your personal short movies with embedded links",
+    
+    "findfavourites": "Find your favourites",
+    "personalizedmovie": "Personalized movie recommendations according to your taste",
+    
     "howDoIWatch":"How do I watch?",
-    "membersSubscribe":"Members that subscribe to Netflix can watch here in the app",
+    "membersSubscribe":"Members that join Reel Jet can watch here in the app",
+    
     "language": "EN",
     "getStarted":"Get Started",
+
+
     "noavatar":"No Avatar",
     "logout":"Log Out",
     "noitemsfound":"No items found",

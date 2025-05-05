@@ -4,6 +4,7 @@ import Register from '../screens/auth/Register';
 import { useMMKVBoolean } from 'react-native-mmkv';
 import { useEffect } from 'react';
 import Onboarding from '../screens/onboarding/Onboarding';
+import AuthHeader from './components/AuthHeader';
 const Stack = createNativeStackNavigator()
 
 const AuthStack = () => {
@@ -15,10 +16,11 @@ const AuthStack = () => {
 
 
     return (
-        <Stack.Navigator>
-            {firstTimeUser&&<Stack.Screen name='Onboarding' component={Onboarding}></Stack.Screen>}
+        <Stack.Navigator screenOptions={{header:()=><AuthHeader/>}}>
+            <Stack.Screen name='Onboarding' component={Onboarding}></Stack.Screen>
+            {/* {firstTimeUser&&<Stack.Screen name='Onboarding' component={Onboarding}></Stack.Screen>}
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Register" component={Register} /> */}
         </Stack.Navigator>
     )
 }

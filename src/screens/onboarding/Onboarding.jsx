@@ -28,13 +28,13 @@ const Onboarding = () => {
     },
     {
         image: require("../../../assets/images/onboarding2.png"),
-        title: t("download"),
-        desc: t("watchOffline"),
+        title: t("findfavourites"),
+        desc: t("personalizedmovie"),
     },
     {
         image: require("../../../assets/images/onboarding3.png"),
-        title: t("noContracts"),
-        desc: t("cancelAnytime"),
+        title: t("upload"),
+        desc: t("abilityposting"),
     },
     {
         image: require("../../../assets/images/onboarding4.png"),
@@ -47,18 +47,27 @@ const Onboarding = () => {
 
   const OnboardItem = ({ item }) => {
     return (
-        <View className='items-center w-screen px-[40px]'>
-            <Image source={item.image} className='size-[260px] object-scale-down' />
-            <Text className='text-[24px] font-bold text-white text-center mt-[18px]'>{item.title}</Text>
-            <Text className='text-[20px] text-[#CCC] text-center mt-5'>{item.desc}</Text>
-        </View>
-    )
-  }
+      <View className='items-center w-screen px-[40px] flex-1 justify-center'>
+        <Image
+          source={item.image}
+          resizeMode="contain"
+          className='h-[300px] w-[287px]'
+        />
+        <Text className='text-[24px] font-bold text-white text-center mt-[18px]'>
+          {item.title}
+        </Text>
+        <Text className='text-[20px] text-[#CCC] text-center mt-5'>
+          {item.desc}
+        </Text>
+      </View>
+    );
+  };
+  
 
 
   const Dot=({index})=>{
     return (
-      <View className={`size-[10px] ${activeIndex===index?"bg-red-600":"bg-white"}`}></View>
+      <View className={`size-[10px] rounded-full ${activeIndex===index?"bg-[#12151E]":"bg-white"}`}></View>
     )
   }
 
@@ -72,9 +81,8 @@ const Onboarding = () => {
   };
 
   return (
-    <ImageBackground className="flex-1 bg-black" {...(activeIndex===3?{source:onboardingItems[3].image}:{})}>
-      <View className="w-full items-center relative mt-[40px] mb-[70px]">
-        <NetflixIcon/>
+    <ImageBackground className="flex-1 bg-[#252631]" >
+      <View className="w-full items-center relative mb-[70px]">
         <TouchableOpacity onPress={handleLanguage} className="absolute right-7 top-3">
           <Text className="text-white">{t("language")}</Text>
         </TouchableOpacity>
@@ -91,7 +99,7 @@ const Onboarding = () => {
       </View>
 
     
-        <TouchableOpacity className="bg-[#E50914] py-4 mx-5 mt-10 mb-5" onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity className="bg-[#3A3CB3] py-4 mx-5 mt-10 mb-5" onPress={() => navigation.navigate("Login")}>
           <Text className="text-center text-white font-bold text-xl">
             {t("getStarted")}
           </Text>
