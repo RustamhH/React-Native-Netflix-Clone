@@ -17,7 +17,9 @@ const AuthStack = () => {
 
     return (
         <Stack.Navigator screenOptions={{header:()=><AuthHeader/>}}>
+
             <Stack.Screen name='Onboarding' component={Onboarding}></Stack.Screen>
+            
             {/* {firstTimeUser&&<Stack.Screen name='Onboarding' component={Onboarding}></Stack.Screen>}
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Register" component={Register} /> */}

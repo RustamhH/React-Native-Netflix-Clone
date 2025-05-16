@@ -5,13 +5,17 @@ import ProfilActive from "../../../assets/icons/profileActive.svg"
 import ProfilInactive from "../../../assets/icons/profileInactive.svg"
 import SearchActive from "../../../assets/icons/searchActive.svg"
 import SearchInactive from "../../../assets/icons/searchInactive.svg"
+import MovieActive from "../../../assets/icons/movieActive.svg"
+import MovieInactive from "../../../assets/icons/movieInactive.svg"
+import PersonalMovieActive from "../../../assets/icons/personalmovieActive.svg"
+import PersonalMovieInactive from "../../../assets/icons/personalmovieInactive.svg"
 
 
 const TabBar = ({ state, descriptors, navigation }) => {
 
   return (
     <View
-      className={`border-t-[1px] border-zinc-100 flex-row bg-black justify-between items-center px-[30px] py-3`}>
+      className={`border-t-[1px] flex-row bg-[#15121E] justify-between items-center px-[30px] py-3`}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label = route.name;
@@ -26,6 +30,10 @@ const TabBar = ({ state, descriptors, navigation }) => {
           icon = isFocused ? <ProfilActive /> : <ProfilInactive />;
         } else if (label === 'Search') {
           icon = isFocused ? <SearchActive /> : <SearchInactive />;
+        } else if (label === 'Movies') {
+          icon = isFocused ? <MovieActive /> : <MovieInactive />;
+        } else if (label === 'Personal Movies') {
+          icon = isFocused ? <PersonalMovieActive /> : <PersonalMovieInactive />;
         }
         
 
@@ -35,7 +43,6 @@ const TabBar = ({ state, descriptors, navigation }) => {
             target: route.key,
           });
 
-          // Handle default navigation to the selected tab if not focused
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name);
           }

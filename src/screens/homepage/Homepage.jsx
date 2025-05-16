@@ -5,10 +5,9 @@ import ContentList from '../../common/ContentList'
 
 const Homepage = () => {
   return (
-    <ScrollView contentContainerStyle={{paddingBottom:20}} className='flex-1 bg-black'>
+    <ScrollView contentContainerStyle={{paddingBottom:20}} className='flex-1 bg-[#252631]'>
       <Poster/>
       <ContentList searchTerm="" type="movie"/>
-      <ContentList searchTerm="" type="tv"/>
     </ScrollView>
   )
 }

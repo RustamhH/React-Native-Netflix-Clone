@@ -19,6 +19,8 @@ const TabStack = () => {
       }
       screenOptions={{ headerShown: false }}>
       <Tab.Screen name='Home' component={HomeStack} />
+      <Tab.Screen name='Movies' component={ProfileStack} />
+      <Tab.Screen name='Personal Movies' component={ProfileStack} />
       <Tab.Screen name='Search' component={SearchStack} />
       <Tab.Screen name='Profile' component={ProfileStack} />
     </Tab.Navigator>
