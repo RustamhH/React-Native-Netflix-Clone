@@ -16,8 +16,10 @@ const Details = () => {
     const [data,setData]=useState({});
     const [trailerKey,setTrailerKey]=useState("");
     const route=useRoute();
-    const {id,type}=route.params
+    const {id,type,item}=route.params
     const { t }=useTranslation()
+    const [selectedLanguage, setSelectedLanguage] = useMMKVString("selectedLanguage");
+
 
     const onStateChange = useCallback((state) => {
         if (state === "ended") {
@@ -29,17 +31,12 @@ const Details = () => {
       const togglePlaying = useCallback(() => {
         setPlaying((prev) => !prev);
       }, []);
+
     const getDataById=async()=>{
         try{
-            const response=await fetch(`http://192.168.100.8:5001/api/v1/${type}/${id}/details`,{
-                headers:{
-                    "Accept":"application/json",
-                    "Authorization":`Bearer ${token}`
-                }
-            });
+            const response=await fetch(`http://10.0.2.2:5124/api/Movie/GetMovieDetails?movieid=${id}&title=${item.title}`);
             const data=await response.json();
-            setData(data.content);
-
+            setData(data);
         }catch(error){
             console.error(error);
         }
@@ -49,14 +46,9 @@ const Details = () => {
 
     const getTrailersById=async()=>{
         try{
-            const response=await fetch(`http://192.168.100.8:5001/api/v1/${type}/${id}/trailers`,{
-                headers:{
-                    "Accept":"application/json",
-                    "Authorization":`Bearer ${token}`
-                }
-            });
-            const data=await response.json();
-            setTrailerKey(data.trailers[0].key);
+            const response=await fetch(`http://10.0.2.2:5124/api/Movie/GetTrailer?movieid=${id}&language=${selectedLanguage}`);
+            const data=await response.text();
+            setTrailerKey(data.split("/embed/")[1]);
 
         }catch(error){
             console.error(error);
@@ -79,7 +71,7 @@ const Details = () => {
         onChangeState={onStateChange}
       />
       <View className='px-3'>
-        <Text className='text-white text-3xl font-extrabold mb-2 mt-3'>{type==="tv"?data.name:data.title}</Text>
+        <Text className='text-white text-3xl font-extrabold mb-2 mt-3'>{type==="tv"?data.name:item.title}</Text>
         <TouchableOpacity className="rounded-[4px] my-3 flex-row justify-center bg-white py-4 items-center gap-2" onPress={togglePlaying}>
             <Play/>
             <Text className=' text-black font-extrabold text-lg'>{t("play")}</Text>
@@ -88,7 +80,7 @@ const Details = () => {
         <TouchableOpacity onPress={()=>{
             setViewMore(prevState=>!prevState)
         }}>
-            <Text className='text-white text-lg'>{!viewMore?data.overview?.substring(0,150): data.overview}<Text className='font-bold text-zinc-500'>{!viewMore ?`...${t("more")}`:""}</Text></Text>
+            <Text className='text-white text-lg'>{!viewMore?item.overview?.substring(0,150): item.overview}<Text className='font-bold text-zinc-500'>{!viewMore ?`...${t("more")}`:""}</Text></Text>
         </TouchableOpacity>
         <Similar id={id} type={type}/>
       </View>

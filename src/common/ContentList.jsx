@@ -13,7 +13,7 @@ const ContentList = ({searchTerm,type}) => {
   const getData = async () => {
     try {
       //const response = await fetch(searchTerm ? `http://192.168.100.8:5001/api/v1/search/${type}/${searchTerm}`:`http://192.168.100.8:5001/api/v1/${type}/trending`)
-      const response = await fetch(`http://10.0.2.2:5124/api/Movie/GetUpcomingMovies?language=en-US`)
+      const response = await fetch(`http://10.0.2.2:5124/api/Movie/GetUpcomingMovies?language=${selectedLanguage}`)
       const data = await response.json()
       setData(data.movies);
 

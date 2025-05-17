@@ -8,18 +8,14 @@ const Similar = ({id,type}) => {
     const [data, setData] = useState([])
     const {token,setToken}=useMMKVString("accessToken");
     const { t }=useTranslation()
-  
+    const [selectedLanguage, setSelectedLanguage] = useMMKVString("selectedLanguage");
+
 
     const getSimilarById=async()=>{
         try{
-            const response=await fetch(`http://192.168.100.8:5001/api/v1/${type}/${id}/similar`,{
-                headers:{
-                    "Accept":"application/json",
-                    "Authorization":`Bearer ${token}`
-                }
-            });
+            const response=await fetch(`http://10.0.2.2:5124/api/Movie/GetInterestedMovies?movieid=${id}&language=${selectedLanguage}}`);
             const data=await response.json();
-            setData(data.similar)
+            setData(data.movies)
         }catch(error){
             console.error(error);
         }
